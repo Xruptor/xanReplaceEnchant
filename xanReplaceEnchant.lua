@@ -13,7 +13,7 @@ function f:PLAYER_LOGIN()
 
 	self:RegisterEvent("REPLACE_ENCHANT")
 
-	SLASH_XANEXP1 = "/xanre";
+	SLASH_XANREPLACEENCHANT1 = "/xanre";
 	SlashCmdList["XANREPLACEENCHANT"] = xanRE_SlashCommand;
 	
 	local ver = GetAddOnMetadata("xanReplaceEnchant","Version") or '1.0'
