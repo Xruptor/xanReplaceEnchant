@@ -40,8 +40,24 @@ end
 function f:REPLACE_ENCHANT(self, oldE, newE)
 	if XanRE_DB.enable == 0 then return end
 	
-	ReplaceEnchant()
-	StaticPopup1Button1:Click()
+	--TODO:
+	--there seems to be an issue with temp enchants, such as shaman temp enchants or these Imbue ones
+	--http://www.wowwiki.com/Imbue
+	--The only thing I can think of is check the oldE vrs the newE for temp enchants.
+	--I suppose if someone is just spamming the same enchant we can always do oldE = newE, but that would sorta suck if we are doing different ones
+	--Maybe a list of possible enchants?
+	
+	-- ReplaceEnchant()
+	-- StaticPopup1Button1:Click()
+	
+	--temporary fix for the popup, code from tekAccept author tekkub
+	for i = 1, STATICPOPUP_NUMDIALOGS do
+		 local frame = _G["StaticPopup"..i]
+		 if (frame:IsVisible() and frame.which == "REPLACE_ENCHANT") then 
+			  StaticPopup_OnClick(frame, 1) 
+		 end
+	end
+			
 end
 
 if IsLoggedIn() then f:PLAYER_LOGIN() else f:RegisterEvent("PLAYER_LOGIN") end
